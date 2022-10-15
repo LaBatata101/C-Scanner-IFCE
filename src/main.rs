@@ -1,4 +1,4 @@
-use scanner::{Scanner, Token};
+use scanner::Scanner;
 
 fn main() {
     let src = "
@@ -16,13 +16,9 @@ int main() {
     println!("Scanning code:\n{}", src);
     let mut scanner = Scanner::new(src);
     println!("TOKENS:");
-    loop {
-        let token = scanner.next_token().unwrap();
-        if token == &Token::Eof {
-            break;
-        }
-
+    while let Some(token) = scanner.next_token() {
         print!("{:?} ", token);
     }
+
     println!();
 }
